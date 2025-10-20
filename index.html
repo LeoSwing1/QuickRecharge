@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trackin Dealer Service Portal - 14 Pages</title>
+    <!-- Bootstrap 5 for Responsiveness -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <!-- Main Content Wrapper -->
+    <div id="app-wrapper">
+
+        <!-- Login Section -->
+        <section id="loginPage" class="page-section active">
+            <div class="container d-flex flex-column justify-content-center vh-100">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                        <div class="card p-4 shadow-lg border-0 login-card">
+                            <h2 class="card-title text-center mb-4 text-primary">Trackin Service Access 💼</h2>
+                            <p class="text-center text-muted small">Enter your credentials below to proceed.</p>
+                            <div id="loginMessage" class="alert alert-danger" style="display: none;"></div>
+                            <form id="loginForm">
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" id="email" placeholder="Dealer ID or Email" required>
+                                </div>
+                                <div class="mb-4">
+                                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 fw-bold">Login & Secure OTP</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main App Interface (Dealer Dashboard) -->
+        <div id="mainApp" style="display: none;">
+            
+            <!-- TOP BAR / HEADER (Sticky and Interactive) -->
+            <header class="sticky-top bg-white shadow-sm p-3 app-header d-flex justify-content-between align-items-center">
+                <h1 class="h5 fw-bold text-primary mb-0">TRACKIN <small class="text-muted dealer-tag">PORTAL</small></h1>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-sm btn-outline-secondary me-2" id="toggleBalance" title="Toggle Balance"><i class="fas fa-eye-slash"></i></button>
+                    <!-- NEW: My Account Dropdown -->
+                    <div class="dropdown me-2">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Account Settings">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="accountDropdown">
+                            <li><h6 class="dropdown-header">My Tools</h6></li>
+                            <li><button class="dropdown-item nav-link-top" data-page="commissionPage"><i class="fas fa-percent me-2"></i> Commission Rates</button></li>
+                            <li><button class="dropdown-item nav-link-top" data-page="reportsPage"><i class="fas fa-chart-bar me-2"></i> Sales Reports</button></li>
+                            <li><button class="dropdown-item nav-link-top" data-page="complaintPage"><i class="fas fa-ticket-alt me-2"></i> Complaint Tracker</button></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><button class="dropdown-item nav-link-top" data-page="settingsPage"><i class="fas fa-cog me-2"></i> Profile & Security</button></li>
+                            <li><button class="dropdown-item text-danger" id="topLogoutBtn"><i class="fas fa-sign-out-alt me-2"></i> Logout</button></li>
+                        </ul>
+                    </div>
+                    <!-- Quick Recharge CTA -->
+                    <button class="btn btn-success scan-btn" data-page="mobileRechargePage" title="Quick Recharge"><i class="fas fa-bolt"></i></button>
+                </div>
+            </header>
+
+            <!-- PAGE CONTENT SECTIONS (14 Dealer Pages) -->
+            <div id="page-content" class="container-fluid pb-5">
+                
+                <!-- 1. Home (Dashboard) -->
+                <section id="homePage" class="page-section active pt-4">
+                    <h5 class="text-secondary mb-3">Your Trackin Summary</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-6">
+                            <div class="card p-3 shadow-sm border-0 bg-primary-subtle text-primary balance-card">
+                                <h6 class="text-muted small mb-1">Current Balance</h6>
+                                <h4 class="fw-bold mb-0" id="walletBalance">₹ ••••</h4>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card p-3 shadow-sm border-0 bg-success-subtle text-success">
+                                <h6 class="text-muted small mb-1">Today's Profit</h6>
+                                <h4 class="fw-bold mb-0">₹ 250.00</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="text-secondary mb-3 mt-4">Core Services</h5>
+                    <div class="row text-center g-3 mb-5">
+                        <div class="col-3"><button class="btn btn-light w-100 p-3 shadow-sm icon-btn" data-page="mobileRechargePage"><i class="fas fa-mobile-alt fa-2x text-primary"></i></button><small class="d-block mt-1 fw-bold">Mobile</small></div>
+                        <div class="col-3"><button class="btn btn-light w-100 p-3 shadow-sm icon-btn" data-page="dthRechargePage"><i class="fas fa-tv fa-2x text-info"></i></button><small class="d-block mt-1 fw-bold">DTH</small></div>
+                        <div class="col-3"><button class="btn btn-light w-100 p-3 shadow-sm icon-btn" data-page="utilityBillsPage"><i class="fas fa-lightbulb fa-2x text-warning"></i></button><small class="d-block mt-1 fw-bold">Utility</small></div>
+                        <div class="col-3"><button class="btn btn-light w-100 p-3 shadow-sm icon-btn" data-page="financialBillsPage"><i class="fas fa-hand-holding-usd fa-2x text-danger"></i></button><small class="d-block mt-1 fw-bold">EMI/Ins</small></div>
+                    </div>
+
+                    <h5 class="text-secondary mb-3">Alerts & Tools</h5>
+                    <div class="card p-3 mb-3 shadow-sm link-card" data-page="ledgerPage">
+                        <h6><i class="fas fa-book me-2"></i> Recent Activity</h6>
+                        <p class="mb-0 small text-danger fw-bold">1 Refund pending processing.</p>
+                    </div>
+                    <div class="card p-3 mb-3 shadow-sm link-card" data-page="customerOffersPage">
+                        <h6><i class="fas fa-bullhorn me-2"></i> Customer Offers</h6>
+                        <p class="mb-0 small text-success fw-bold">New Summer Cashback deals available!</p>
+                    </div>
+                </section>
+
+                <!-- 2. Mobile Recharge Page -->
+                <section id="mobileRechargePage" class="page-section">
+                    <h2 class="h4 my-4">Quick Mobile Recharge</h2>
+                    <form class="p-4 border rounded-3 shadow-sm bg-white">
+                        <input type="tel" class="form-control form-control-lg mb-3" placeholder="Customer Mobile Number" required>
+                        <select class="form-select form-select-lg mb-3"><option>Select Operator (Auto-Detect)</option><option>Airtel</option><option>Jio</option></select>
+                        <input type="number" class="form-control form-control-lg mb-4" placeholder="Amount / View Plans" required>
+                        <button type="submit" class="btn btn-success w-100 fw-bold btn-lg">Process Recharge</button>
+                    </form>
+                </section>
+                
+                <!-- 3. DTH Recharge Page -->
+                <section id="dthRechargePage" class="page-section">
+                    <h2 class="h4 my-4">DTH Recharge</h2>
+                    <form class="p-4 border rounded-3 shadow-sm bg-white">
+                        <input type="text" class="form-control mb-3" placeholder="Customer ID" required>
+                        <select class="form-select mb-3"><option>Select Provider</option><option>Tata Play</option><option>Dish TV</option></select>
+                        <input type="number" class="form-control mb-4" placeholder="Recharge Amount" required>
+                        <button type="submit" class="btn btn-primary w-100">Process DTH</button>
+                    </form>
+                </section>
+
+                <!-- 4. Utility Bills Page -->
+                <section id="utilityBillsPage" class="page-section">
+                    <h2 class="h4 my-4">Utility Bills (Electricity, Water, Gas)</h2>
+                    <form class="p-4 border rounded-3 shadow-sm bg-white">
+                        <select class="form-select mb-3"><option>Electricity</option><option>Gas</option><option>Water</option></select>
+                        <input type="text" class="form-control mb-4" placeholder="Consumer ID / Account No." required>
+                        <button type="button" class="btn btn-secondary w-100 mb-2">Fetch Pending Bill</button>
+                        <button type="submit" class="btn btn-primary w-100">Pay Bill</button>
+                    </form>
+                </section>
+                
+                <!-- 5. Financial Bills Page (NEW) -->
+                <section id="financialBillsPage" class="page-section">
+                    <h2 class="h4 my-4">Financial Bills (EMI, Insurance, FASTag)</h2>
+                    <form class="p-4 border rounded-3 shadow-sm bg-white">
+                        <select class="form-select mb-3"><option>Loan EMI</option><option>Insurance Premium</option><option>FASTag Recharge</option></select>
+                        <input type="text" class="form-control mb-4" placeholder="Policy/Loan/Vehicle Number" required>
+                        <button type="submit" class="btn btn-primary w-100">Proceed to Pay</button>
+                    </form>
+                </section>
+
+                <!-- 6. Ledger/Passbook Page -->
+                <section id="ledgerPage" class="page-section">
+                    <h2 class="h4 my-4">Transaction Ledger (Last 7 Days)</h2>
+                    <div class="list-group shadow-sm rounded-3">
+                        <div class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-bolt text-success me-2"></i> Mobile ₹500 - SUCCESS <span class="fw-bold text-success">Profit: ₹2.50</span></div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-hand-holding-usd text-primary me-2"></i> Fund Added <span class="fw-bold text-primary">+₹10,000.00</span></div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-times-circle text-danger me-2"></i> Recharge ₹10 - FAILED <span class="fw-bold text-danger">Refund: ₹10.00</span></div>
+                    </div>
+                </section>
+                
+                <!-- 7. Fund Wallet Page -->
+                <section id="fundWalletPage" class="page-section">
+                    <h2 class="h4 my-4">Fund Wallet (Wallet Top-Up)</h2>
+                    <form class="p-4 border rounded-3 shadow-sm bg-white">
+                        <input type="number" class="form-control mb-3" placeholder="Amount to Add (Min ₹1000)" required>
+                        <select class="form-select mb-4"><option>Via UPI</option><option>Via Net Banking</option><option>Via Cash Deposit</option></select>
+                        <button type="submit" class="btn btn-primary w-100">Generate Payment Request</button>
+                    </form>
+                </section>
+
+                <!-- 8. P2P Dealer Transfer Page (NEW) -->
+                <section id="p2pTransferPage" class="page-section">
+                    <h2 class="h4 my-4">P2P Dealer Balance Transfer</h2>
+                    <div class="alert alert-warning small">Transfer funds to other registered Trackin Dealers/Retailers.</div>
+                    <form class="p-4 border rounded-3 shadow-sm bg-white">
+                        <input type="text" class="form-control mb-3" placeholder="Recipient Dealer ID or Mobile" required>
+                        <input type="number" class="form-control mb-4" placeholder="Transfer Amount" required>
+                        <button type="submit" class="btn btn-success w-100">Send Balance Securely</button>
+                    </form>
+                </section>
+                
+                <!-- 9. Commission Rates Page (NEW/Refined Pricing Chart) -->
+                <section id="commissionPage" class="page-section">
+                    <h2 class="h4 my-4">Commission Rates</h2>
+                    <div class="card p-4 shadow-sm">
+                        <h5 class="text-center text-success">Your Earning Structure</h5>
+                        <p class="text-muted small text-center mb-4">Rates are instantly credited upon successful transaction.</p>
+                        <table class="table table-striped small">
+                            <thead><tr><th>Service</th><th>Operator</th><th>Rate (%)</th></tr></thead>
+                            <tbody>
+                                <tr><td>Mobile Prepaid</td><td>Jio/Airtel</td><td class="text-success fw-bold">3.2%</td></tr>
+                                <tr><td>Mobile Prepaid</td><td>VI/BSNL</td><td class="text-success fw-bold">3.5%</td></tr>
+                                <tr><td>DTH</td><td>All Operators</td><td class="text-success fw-bold">2.8%</td></tr>
+                                <tr><td>Utility Bills</td><td>All</td><td class="text-success fw-bold">0.5%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 10. Reports Page (NEW/Refined Profit Analysis) -->
+                <section id="reportsPage" class="page-section">
+                    <h2 class="h4 my-4">Sales & Profit Reports</h2>
+                    <div class="card p-4 shadow-sm">
+                        <h5 class="text-center text-primary">Monthly Performance Dashboard</h5>
+                        <div class="row text-center mt-3 g-2">
+                            <div class="col-6"><p class="mb-0 fw-bold text-primary">Volume (30D)</p><p class="h6 text-muted">₹ 50,000</p></div>
+                            <div class="col-6"><p class="mb-0 fw-bold text-success">Profit (30D)</p><p class="h6 text-muted">₹ 2,000</p></div>
+                        </div>
+                        <div class="text-center border p-5 mt-3 bg-light rounded-3">
+                            [Placeholder for Daily Sales Volume Chart]
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 11. Complaint Tracker Page (NEW) -->
+                <section id="complaintPage" class="page-section">
+                    <h2 class="h4 my-4">Complaint Tracker</h2>
+                    <div class="alert alert-warning small">Raise a ticket for failed transactions or refunds.</div>
+                    <div class="list-group shadow-sm rounded-3">
+                        <div class="list-group-item d-flex justify-content-between align-items-center">Ticket #001 <span class="badge bg-warning text-dark">Pending Refund</span></div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">Ticket #002 <span class="badge bg-success">Resolved</span></div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">Ticket #003 <span class="badge bg-danger">In Progress</span></div>
+                    </div>
+                    <button class="btn btn-outline-danger w-100 mt-3">Raise New Complaint</button>
+                </section>
+
+                <!-- 12. Customer Offers Page (NEW) -->
+                <section id="customerOffersPage" class="page-section">
+                    <h2 class="h4 my-4">Customer Offers (Promote in Store)</h2>
+                    <div class="card p-4 shadow-sm bg-info-subtle">
+                        <h5>Airtel Recharge Offer</h5>
+                        <p class="small mb-2">Get extra 5% Talktime on all recharges above ₹299 (Your effective profit increases!).</p>
+                        <button class="btn btn-info btn-sm">Share Poster</button>
+                    </div>
+                    <div class="card p-4 shadow-sm bg-danger-subtle mt-3">
+                        <h5>Loan EMI Payment Bonus</h5>
+                        <p class="small mb-2">Customer gets ₹10 cashback on first Loan EMI payment.</p>
+                        <button class="btn btn-danger btn-sm">View Terms</button>
+                    </div>
+                </section>
+                
+                <!-- 13. Retailer Management Page -->
+                <section id="retailerPage" class="page-section">
+                    <h2 class="h4 my-4">Retailer Management</h2>
+                    <div class="alert alert-info small">This tool is for distributors to manage their retailer network.</div>
+                    <ul class="list-group shadow-sm rounded-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">Retailer A <span class="badge bg-success">Balance: ₹5k</span></li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">Retailer B <span class="badge bg-danger">Balance: ₹120</span></li>
+                    </ul>
+                    <button class="btn btn-outline-primary w-100 mt-3" data-page="p2pTransferPage">Transfer Balance to Retailer</button>
+                    <button class="btn btn-outline-secondary w-100 mt-2">Add New Retailer</button>
+                </section>
+                
+                <!-- 14. Settings & Profile Page -->
+                <section id="settingsPage" class="page-section">
+                    <h2 class="h4 my-4">Profile & Security Settings</h2>
+                    <div class="list-group shadow-sm rounded-3">
+                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-user-circle me-2"></i> Update Business Details / KYC</a>
+                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-lock me-2"></i> Change Password / Transaction PIN</a>
+                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-headset me-2"></i> Contact Priority Support</a>
+                    </div>
+                </section>
+                
+            </div>
+
+            <!-- BOTTOM NAVIGATION BAR (Mobile UI) -->
+            <nav id="bottomNav" class="fixed-bottom bg-white shadow-lg d-md-none">
+                <div class="d-flex justify-content-around">
+                    <button class="nav-item-btn active" data-page="homePage"><i class="fas fa-chart-line"></i><small>Home</small></button>
+                    <button class="nav-item-btn" data-page="mobileRechargePage"><i class="fas fa-mobile-alt"></i><small>Recharge</small></button>
+                    <button class="nav-item-btn" data-page="ledgerPage"><i class="fas fa-book"></i><small>Ledger</small></button>
+                    <button class="nav-item-btn" data-page="fundWalletPage"><i class="fas fa-wallet"></i><small>Funds</small></button>
+                    <button class="nav-item-btn" data-page="settingsPage"><i class="fas fa-cog"></i><small>Settings</small></button>
+                </div>
+            </nav>
+            
+        </div>
+    </div>
+
+    <!-- OTP Verification Modal -->
+    <div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="otpModalLabel">Trackin: Secure OTP</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small text-center">Enter the one-time code for login security.</p>
+                    <div id="otpMessage" class="alert alert-danger" style="display: none;"></div>
+                    <form id="otpForm">
+                        <input type="text" class="form-control text-center fs-4" id="otpInput" maxlength="6" placeholder="• • • • • •" required>
+                        <button type="submit" class="btn btn-success w-100 mt-3">Verify & Access Portal</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS & Custom Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
