@@ -161,14 +161,21 @@
                 </section>
                 
                 <!-- 7. Fund Wallet Page -->
-                <section id="fundWalletPage" class="page-section">
-                    <h2 class="h4 my-4">Fund Wallet (Wallet Top-Up)</h2>
-                    <form class="p-4 border rounded-3 shadow-sm bg-white">
-                        <input type="number" class="form-control mb-3" placeholder="Amount to Add (Min ₹1000)" required>
-                        <select class="form-select mb-4"><option>Via UPI</option><option>Via Net Banking</option><option>Via Cash Deposit</option></select>
-                        <button type="submit" class="btn btn-primary w-100">Generate Payment Request</button>
-                    </form>
-                </section>
+                <!-- 7. Fund Wallet Page -->
+<section id="fundWalletPage" class="page-section">
+    <h2 class="h4 my-4">Fund Wallet (Wallet Top-Up)</h2>
+    <form id="fundWalletForm" class="p-4 border rounded-3 shadow-sm bg-white">
+        <input type="number" class="form-control mb-3" id="fundAmount" placeholder="Amount to Add (Min ₹1000)" required>
+        <select class="form-select mb-4" id="fundMethod">
+            <option>Via UPI</option>
+            <option>Via Net Banking</option>
+            <option>Via Cash Deposit</option>
+        </select>
+        <button type="submit" class="btn btn-primary w-100">Add Money to Wallet</button>
+    </form>
+    <div id="fundMessage" class="alert mt-3" style="display:none;"></div>
+</section>
+
 
                 <!-- 8. P2P Dealer Transfer Page (NEW) -->
                 <section id="p2pTransferPage" class="page-section">
